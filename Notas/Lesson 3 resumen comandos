@@ -1,0 +1,67 @@
+-- ================================
+-- LESSON 3: SQL TECHNIQUES - pg4e
+-- ================================
+
+-- ALTER TABLE
+-- Modificar una tabla existente
+ALTER TABLE fav DROP COLUMN oops;        -- elimina columna
+ALTER TABLE fav ADD COLUMN howmuch INTEGER; -- agrega columna
+ALTER TABLE post ALTER COLUMN content TYPE TEXT; -- cambia tipo de dato
+
+-- DISTINCT
+-- Eliminar duplicados en resultados
+SELECT DISTINCT make FROM racing;
+
+-- GROUP BY
+-- Agrupar filas y contarlas
+SELECT COUNT(id), account_id 
+FROM post 
+GROUP BY account_id;
+
+-- HAVING
+-- Filtrar grupos (va siempre después del GROUP BY)
+SELECT COUNT(id), account_id 
+FROM post 
+GROUP BY account_id 
+HAVING COUNT(id) > 5;
+
+-- SUBQUERY
+-- Un query dentro de otro query
+-- Primero se resuelve el de adentro, luego el de afuera
+SELECT content FROM comment 
+WHERE account_id = (
+    SELECT id FROM account WHERE email='ed@umich.edu'
+);
+
+-- CONCURRENCY - ON CONFLICT
+-- Cuando varios usuarios tocan el mismo dato al mismo tiempo
+INSERT INTO fav (post_id, account_id, howmuch)
+VALUES (1, 1, 1)
+ON CONFLICT (post_id, account_id)
+DO UPDATE SET howmuch = fav.howmuch + 1;
+
+-- TRANSACTIONS
+-- Bloquear una fila, hacer cambios y confirmar o deshacer
+BEGIN;
+UPDATE fav SET howmuch = 999 
+WHERE account_id=1 AND post_id=1;
+COMMIT;    -- confirma los cambios
+-- o
+ROLLBACK;  -- deshace todo
+
+-- STORED PROCEDURES + TRIGGERS
+-- Automatizar lógica repetitiva dentro de la base de datos
+-- El procedure define QUÉ hacer
+CREATE OR REPLACE FUNCTION trigger_set_timestamp()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at = NOW();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- El trigger define CUÁNDO ejecutarlo
+CREATE TRIGGER set_timestamp
+BEFORE UPDATE ON post
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_set_timestamp();
