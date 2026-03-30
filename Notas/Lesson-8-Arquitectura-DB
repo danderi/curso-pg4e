@@ -1,0 +1,149 @@
+What is the primary difference between ACID and BASE databases?
+
+ The view that multiple simultaneous readers have on the data
+
+ The performance of re-indexing operations
+
+ The ability to store schemaless data in JSON
+
+ The ability to replicate data to increase read performance
+
+What concept in relational database design is ignored in BASE database systems?
+
+ Name tables using plural names and objects with singular names
+
+ Never store JSON data uncompressed
+
+ Use B-tree indexes below a certain number of rows
+
+ Don't allow vertical replication of string data
+
+Why is the term "NoSQL" used less and less recently?
+
+ Oracle trademarked NoSQL(tm) and no one wanted to pay a license fee
+
+ Because brands like Mongo and Cassandra became well-known
+
+ Because NoSQL has "won" and SQL is no longer in common use
+
+ Many BASE-style databases are providing SQL interfaces
+
+Of the "letters" in the BASE abbreviation, which captures the notion best?
+
+ Big Data
+
+ Soft limits
+
+ Eventual Consistency
+
+ Atomicity
+
+Which of the following techniques has a negative performance impact (and is usually not possible) in a BASE-style database?
+
+ SERIAL primary keys
+
+ GUID primary keys
+
+ Schema-on-read
+
+ Extending the schema on the fly
+
+Which of the following techniques used to scale ACID style databases that is in a sense BASE-like?
+
+ Read replicas
+
+ SSD
+
+ Vertical scaling
+
+ Multi-Master
+
+ Each tenant has its own database instance
+
+Which of these database architectures came first?
+
+ ACID
+
+ BASE
+
+Why are the database requirements for Facebook so much more complex than GMail?
+
+ Facebook needed to handle with lots of photos
+
+ Facebook stored far more data than GMail
+
+ Facebook must handle friends and privacy
+
+ Facebook needed to distribute data across many data centers around the world
+
+What kind of computers would you see in a Google data center?
+
+ Large refrigerator-sized computers with 100's of CPUs and large shared memory
+
+ Rows and rows of rack-mounted specialized hardware
+
+ Simple commodity computers without any extra packaging
+
+ Multi-processor systems connected to large RAID-arrays of disk
+
+How many computers are involved in producing a Google search result?
+
+ 1
+
+ 5000
+
+ 200
+
+ 10
+
+What is the first step in a Google search to get to the point where you see the top pages on the Internet that march your search?
+
+ Inverted index of keywords
+
+ Quality measure of the website content
+
+ The supplemental index
+
+ Page rank
+
+How did/does Amazon Web services push application architects to build distributed applications?
+
+ Small memory systems are the most cost effective
+
+ Disk space was more expensive than main memory
+
+ Software as a service (like Redshift) were far less expensive than building your own database servers
+
+ Temporary disk space was cheaper than permanent space
+
+Which of the following does not belong for a BASE-style database system:
+
+ A service can be scaled horizontally by addingmore servers
+
+ It is easy to have an unique integer key that increments for each row and is provided by the database
+
+ Data is distributed on many servers and requests can go to any server
+
+ Data is often sharded
+
+What database was used to develop Amazon' RedShift service?
+
+ MongoDB
+
+ Cassandra
+
+ PostgreSQL
+
+ MySQL
+
+ Oracle
+
+How have traditional ACID database vendors like PostgreSQL reacted to the rise in popularity of new NoSQL / BASE database systems?
+
+ By adding optional NoSQL / BASE features like JSON fields and read replicas
+
+ By evolving the SQL language to be SQL++
+
+ By removing support for transactions and SERIAL fields to improve performance
+
+ By pointing that BASE databases are eventually consistent
